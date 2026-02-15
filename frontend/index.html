@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGen IdeaEngine | AI-Based Research Gap Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <canvas id="bg-canvas"></canvas>
+
+    <nav class="navbar glass">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="gradient-text">NextGen</span> IdeaEngine
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#generate">Generate Idea</a></li>
+                <li><a href="#repository">Project Repository</a></li>
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#admin">Admin</a></li>
+            </ul>
+            <div class="nav-auth">
+                <button class="btn btn-outline" id="login-btn">Login</button>
+                <button class="btn btn-primary" id="signup-btn">Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Reinvent Innovation with <span class="gradient-text">AI</span></h1>
+                <p class="hero-subtitle">Transform Existing Projects into Next-Generation Research Solutions using
+                    advanced semantic gap detection.</p>
+                <div class="hero-btns">
+                    <a href="#generate" class="btn btn-primary">Generate AI Idea</a>
+                    <a href="#repository" class="btn btn-outline">Explore Projects</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="ai-sphere-container">
+                    <div class="ai-sphere"></div>
+                    <div class="ai-glow"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section id="how-it-works" class="steps-section">
+            <h2 class="section-title text-center">How It <span class="gradient-text">Works</span></h2>
+            <div class="steps-grid">
+                <div class="step-card glass glass-hover">
+                    <div class="step-num">01</div>
+                    <h3>Enter Project</h3>
+                    <p>Input your existing project title or a problem statement you're working on.</p>
+                </div>
+                <div class="step-card glass glass-hover">
+                    <div class="step-num">02</div>
+                    <h3>AI Gap Analysis</h3>
+                    <p>Our engine detects limitations and research gaps using semantic similarity.</p>
+                </div>
+                <div class="step-card glass glass-hover">
+                    <div class="step-num">03</div>
+                    <h3>Next-Gen Idea</h3>
+                    <p>Get a complete innovation blueprint with suggested algorithms and tech.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Generator Section -->
+        <section id="generate" class="generator-section">
+            <div class="generator-container glass">
+                <h2 class="section-title">AI Idea <span class="gradient-text">Generator</span></h2>
+                <div class="input-wrapper">
+                    <textarea id="project-input" placeholder="Enter project title or problem statement..."></textarea>
+                    <div class="input-actions">
+                        <button id="analyze-btn" class="btn btn-primary"><i class="fas fa-microchip"></i> Analyze
+                            Project</button>
+                    </div>
+                </div>
+
+                <div id="loader" class="hidden">
+                    <div class="ai-loader">
+                        <div class="loader-brain"></div>
+                        <p>Analyzing research gaps using semantic similarity...</p>
+                    </div>
+                </div>
+
+                <div id="output-section" class="hidden">
+                    <!-- Dynamic Output -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Repository -->
+        <section id="repository" class="repo-section">
+            <div class="section-header">
+                <h2 class="section-title">Project <span class="gradient-text">Repository</span></h2>
+                <div class="search-bar glass">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="repo-search" placeholder="Search by domain, algorithm or technology..."
+                        autocomplete="off">
+                    <div id="search-suggestions" class="suggestions-list glass hidden"></div>
+                </div>
+            </div>
+            <div class="filters">
+                <select id="filter-domain" class="glass">
+                    <option value="">All Domains</option>
+                    <option value="AI">Artificial Intelligence</option>
+                    <option value="Blockchain">Blockchain</option>
+                    <option value="IoT">Internet of Things</option>
+                </select>
+                <select id="filter-year" class="glass">
+                    <option value="">All Years</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                </select>
+            </div>
+            <div id="project-grid" class="projects-grid">
+                <!-- Project cards will be here -->
+            </div>
+        </section>
+
+        <!-- Dashboard -->
+        <section id="dashboard" class="dashboard-section">
+            <h2 class="section-title">Innovation <span class="gradient-text">Insights</span></h2>
+            <div class="dashboard-grid">
+                <div class="stat-card glass">
+                    <h3>Total Projects</h3>
+                    <div class="stat-val" id="total-projects">52</div>
+                </div>
+                <div class="chart-card glass">
+                    <h3>Domain Distribution</h3>
+                    <canvas id="domain-chart"></canvas>
+                </div>
+                <div class="chart-card glass">
+                    <h3>Algorithm Usage</h3>
+                    <canvas id="algo-chart"></canvas>
+                </div>
+                <div class="chart-card glass">
+                    <h3>Innovation Trend</h3>
+                    <canvas id="trend-chart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Access (Simple trigger for demo) -->
+        <section id="admin" class="admin-section hidden">
+            <!-- Admin Panel content -->
+        </section>
+
+    </main>
+
+    <footer class="glass">
+        <div class="footer-content">
+            <div class="footer-logo">NextGen IdeaEngine</div>
+            <p>Empowering the next generation of researchers with AI-driven innovation.</p>
+            <div class="footer-team">Developed by <span class="gradient-text">Vaishnavi Patil</span></div>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal hidden">
+        <div class="modal-content glass">
+            <span class="close-modal">&times;</span>
+            <div id="auth-forms">
+                <div id="login-form">
+                    <h2 class="gradient-text">Login</h2>
+                    <input type="email" id="login-email" placeholder="Email" class="glass">
+                    <input type="password" id="login-password" placeholder="Password" class="glass">
+                    <a href="#" id="to-forgot-password"
+                        style="font-size: 0.8rem; display: block; margin-top: -10px; margin-bottom: 20px; text-align: right; color: var(--text-dim);">Forgot
+                        Password?</a>
+                    <button class="btn btn-primary w-full" id="login-submit">Login</button>
+                    <div class="divider"><span>OR</span></div>
+                    <button class="btn btn-outline w-full google-btn" id="google-login">
+                        <i class="fab fa-google"></i> Sign in with Google
+                    </button>
+                    <p>Don't have an account? <a href="#" id="to-signup">Sign Up</a></p>
+                </div>
+                <div id="forgot-password-form" class="hidden">
+                    <h2 class="gradient-text">Reset Password</h2>
+                    <p style="margin-bottom: 20px; font-size: 0.9rem;">Enter your email to receive a reset token.</p>
+                    <input type="email" id="forgot-email" placeholder="Email" class="glass">
+                    <button class="btn btn-primary w-full" id="forgot-submit">Send Reset Link</button>
+                    <p><a href="#" class="back-to-login">Back to Login</a></p>
+                </div>
+                <div id="reset-password-form" class="hidden">
+                    <h2 class="gradient-text">New Password</h2>
+                    <input type="text" id="reset-token" placeholder="Enter Token" class="glass">
+                    <input type="password" id="reset-new-password" placeholder="New Password" class="glass">
+                    <button class="btn btn-primary w-full" id="reset-submit">Update Password</button>
+                </div>
+                <div id="signup-form" class="hidden">
+                    <h2 class="gradient-text">Sign Up</h2>
+                    <input type="text" id="signup-name" placeholder="Full Name" class="glass">
+                    <input type="email" id="signup-email" placeholder="Email" class="glass">
+                    <input type="password" id="signup-password" placeholder="Password" class="glass">
+                    <button class="btn btn-primary w-full" id="signup-submit">Create Account</button>
+                    <div class="divider"><span>OR</span></div>
+                    <button class="btn btn-outline w-full google-btn" id="google-signup">
+                        <i class="fab fa-google"></i> Sign up with Google
+                    </button>
+                    <p>Already have an account? <a href="#" id="to-login">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js" type="module"></script>
+</body>
+
+</html>

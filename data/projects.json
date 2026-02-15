@@ -1,0 +1,965 @@
+[
+  {
+    "project_id": "PROJ-MANUAL-1",
+    "project_title": "AI Smart Attendance System",
+    "domain": "AI",
+    "problem_statement": "Automate attendance using face recognition",
+    "algorithms_used": [
+      "CNN",
+      "Haar Cascade"
+    ],
+    "technologies_used": [
+      "Python",
+      "OpenCV"
+    ],
+    "limitations": "Poor lighting affects accuracy",
+    "year": 2024,
+    "innovation_score": 76,
+    "ai_confidence": 89.5,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-2",
+    "project_title": "IoT Smart Waste Monitor",
+    "domain": "IoT",
+    "problem_statement": "Monitor garbage levels in bins",
+    "algorithms_used": [
+      "Threshold Logic"
+    ],
+    "technologies_used": [
+      "Arduino",
+      "ESP8266"
+    ],
+    "limitations": "No odor detection",
+    "year": 2023,
+    "innovation_score": 80,
+    "ai_confidence": 90,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-3",
+    "project_title": "Parkinson Detection via Handwriting",
+    "domain": "AI",
+    "problem_statement": "Detect early Parkinson signs from handwriting",
+    "algorithms_used": [
+      "CNN",
+      "ResNet"
+    ],
+    "technologies_used": [
+      "Python",
+      "TensorFlow"
+    ],
+    "limitations": "Small dataset size",
+    "year": 2025,
+    "innovation_score": 87,
+    "ai_confidence": 88.8,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-4",
+    "project_title": "AI Crop Disease Detector",
+    "domain": "AI",
+    "problem_statement": "Identify plant diseases from leaf images",
+    "algorithms_used": [
+      "CNN"
+    ],
+    "technologies_used": [
+      "Python",
+      "Keras"
+    ],
+    "limitations": "Limited to 5 crops",
+    "year": 2023,
+    "innovation_score": 70,
+    "ai_confidence": 92.5,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-5",
+    "project_title": "Blockchain Voting System",
+    "domain": "Blockchain",
+    "problem_statement": "Secure digital voting",
+    "algorithms_used": [
+      "SHA-256"
+    ],
+    "technologies_used": [
+      "Solidity",
+      "Ethereum"
+    ],
+    "limitations": "Scalability issues",
+    "year": 2024,
+    "innovation_score": 79,
+    "ai_confidence": 93.6,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-6",
+    "project_title": "Smart Traffic Density Analyzer",
+    "domain": "AI",
+    "problem_statement": "Detect traffic congestion via CCTV",
+    "algorithms_used": [
+      "YOLO"
+    ],
+    "technologies_used": [
+      "Python",
+      "OpenCV"
+    ],
+    "limitations": "Not real-time optimized",
+    "year": 2024,
+    "innovation_score": 74,
+    "ai_confidence": 91.8,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-7",
+    "project_title": "Student Performance Predictor",
+    "domain": "ML",
+    "problem_statement": "Predict student results",
+    "algorithms_used": [
+      "Random Forest"
+    ],
+    "technologies_used": [
+      "Python",
+      "Scikit-learn"
+    ],
+    "limitations": "No psychological factors included",
+    "year": 2023,
+    "innovation_score": 74,
+    "ai_confidence": 89.8,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-8",
+    "project_title": "AI Resume Screening Tool",
+    "domain": "NLP",
+    "problem_statement": "Automate resume shortlisting",
+    "algorithms_used": [
+      "TF-IDF",
+      "SVM"
+    ],
+    "technologies_used": [
+      "Python",
+      "Flask"
+    ],
+    "limitations": "Bias in dataset",
+    "year": 2024,
+    "innovation_score": 85,
+    "ai_confidence": 92.9,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-9",
+    "project_title": "Smart Irrigation System",
+    "domain": "IoT",
+    "problem_statement": "Automate water usage based on soil moisture",
+    "algorithms_used": [
+      "Threshold Logic"
+    ],
+    "technologies_used": [
+      "Arduino",
+      "Sensors"
+    ],
+    "limitations": "No weather forecasting integration",
+    "year": 2022,
+    "innovation_score": 77,
+    "ai_confidence": 89.7,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-10",
+    "project_title": "AI Chatbot for College",
+    "domain": "NLP",
+    "problem_statement": "Automate student query responses",
+    "algorithms_used": [
+      "LSTM"
+    ],
+    "technologies_used": [
+      "Python",
+      "Flask"
+    ],
+    "limitations": "Limited language support",
+    "year": 2024,
+    "innovation_score": 76,
+    "ai_confidence": 89,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-11",
+    "project_title": "Cyberbullying Detection System",
+    "domain": "NLP",
+    "problem_statement": "Detect abusive content online",
+    "algorithms_used": [
+      "Naive Bayes"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "Cannot detect sarcasm",
+    "year": 2023,
+    "innovation_score": 76,
+    "ai_confidence": 95.8,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-12",
+    "project_title": "AI-Based Emotion Detector",
+    "domain": "AI",
+    "problem_statement": "Detect emotions from facial images",
+    "algorithms_used": [
+      "CNN"
+    ],
+    "technologies_used": [
+      "OpenCV"
+    ],
+    "limitations": "Low accuracy in low light",
+    "year": 2024,
+    "innovation_score": 89,
+    "ai_confidence": 89.5,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-13",
+    "project_title": "Road Accident Prediction",
+    "domain": "ML",
+    "problem_statement": "Predict accident-prone zones",
+    "algorithms_used": [
+      "Logistic Regression"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "Limited real-time data",
+    "year": 2023,
+    "innovation_score": 90,
+    "ai_confidence": 90.6,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-14",
+    "project_title": "Smart Energy Meter",
+    "domain": "IoT",
+    "problem_statement": "Monitor electricity consumption",
+    "algorithms_used": [
+      "Threshold Logic"
+    ],
+    "technologies_used": [
+      "ESP8266"
+    ],
+    "limitations": "No mobile notification",
+    "year": 2022,
+    "innovation_score": 75,
+    "ai_confidence": 92.8,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-15",
+    "project_title": "Fake News Detection",
+    "domain": "NLP",
+    "problem_statement": "Detect fake online news",
+    "algorithms_used": [
+      "BERT"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "Struggles with regional news",
+    "year": 2024,
+    "innovation_score": 82,
+    "ai_confidence": 95.6,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-16",
+    "project_title": "Heart Disease Prediction",
+    "domain": "ML",
+    "problem_statement": "Predict heart disease risk",
+    "algorithms_used": [
+      "KNN"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "Small training dataset",
+    "year": 2023,
+    "innovation_score": 94,
+    "ai_confidence": 93,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-17",
+    "project_title": "AI Virtual Doctor",
+    "domain": "AI",
+    "problem_statement": "Provide preliminary medical advice",
+    "algorithms_used": [
+      "Decision Tree"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "No real-time patient monitoring",
+    "year": 2024,
+    "innovation_score": 87,
+    "ai_confidence": 91.9,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-18",
+    "project_title": "Smart Parking System",
+    "domain": "IoT",
+    "problem_statement": "Detect parking availability",
+    "algorithms_used": [
+      "Ultrasonic Logic"
+    ],
+    "technologies_used": [
+      "Arduino"
+    ],
+    "limitations": "No reservation feature",
+    "year": 2023,
+    "innovation_score": 75,
+    "ai_confidence": 95.6,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-19",
+    "project_title": "Hand Gesture Recognition",
+    "domain": "AI",
+    "problem_statement": "Control devices via hand gestures",
+    "algorithms_used": [
+      "CNN"
+    ],
+    "technologies_used": [
+      "TensorFlow"
+    ],
+    "limitations": "Limited gesture dataset",
+    "year": 2024,
+    "innovation_score": 82,
+    "ai_confidence": 93.1,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-20",
+    "project_title": "Voice-Based Gender Detection",
+    "domain": "ML",
+    "problem_statement": "Detect gender from voice",
+    "algorithms_used": [
+      "SVM"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "Noise sensitivity",
+    "year": 2023,
+    "innovation_score": 90,
+    "ai_confidence": 93.8,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-21",
+    "project_title": "AI-Based Stress Detector",
+    "domain": "AI",
+    "problem_statement": "Detect stress from handwriting",
+    "algorithms_used": [
+      "CNN"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "Not clinically validated",
+    "year": 2025,
+    "innovation_score": 94,
+    "ai_confidence": 90.4,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-22",
+    "project_title": "E-Learning Recommendation System",
+    "domain": "ML",
+    "problem_statement": "Suggest courses to students",
+    "algorithms_used": [
+      "Collaborative Filtering"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "Cold start problem",
+    "year": 2023,
+    "innovation_score": 82,
+    "ai_confidence": 89.1,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-23",
+    "project_title": "Smart Helmet System",
+    "domain": "IoT",
+    "problem_statement": "Detect helmet usage",
+    "algorithms_used": [
+      "IR Sensor Logic"
+    ],
+    "technologies_used": [
+      "Arduino"
+    ],
+    "limitations": "No accident alert feature",
+    "year": 2022,
+    "innovation_score": 90,
+    "ai_confidence": 92,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-24",
+    "project_title": "Intrusion Detection System",
+    "domain": "Cybersecurity",
+    "problem_statement": "Detect network attacks",
+    "algorithms_used": [
+      "Random Forest"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "High false positives",
+    "year": 2024,
+    "innovation_score": 90,
+    "ai_confidence": 93.4,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-25",
+    "project_title": "Smart Home Automation",
+    "domain": "IoT",
+    "problem_statement": "Automate appliances",
+    "algorithms_used": [
+      "ESP Logic"
+    ],
+    "technologies_used": [
+      "ESP8266"
+    ],
+    "limitations": "No voice assistant integration",
+    "year": 2023,
+    "innovation_score": 71,
+    "ai_confidence": 88.7,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-26",
+    "project_title": "AI-Based Plagiarism Checker",
+    "domain": "NLP",
+    "problem_statement": "Detect plagiarism in documents",
+    "algorithms_used": [
+      "Cosine Similarity"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "Cannot detect paraphrasing fully",
+    "year": 2024,
+    "innovation_score": 84,
+    "ai_confidence": 90.6,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-27",
+    "project_title": "AI Disease Symptom Checker",
+    "domain": "ML",
+    "problem_statement": "Predict disease from symptoms",
+    "algorithms_used": [
+      "Decision Tree"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "No medical expert validation",
+    "year": 2023,
+    "innovation_score": 70,
+    "ai_confidence": 93,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-28",
+    "project_title": "Facial Age Prediction",
+    "domain": "AI",
+    "problem_statement": "Predict age from facial image",
+    "algorithms_used": [
+      "CNN"
+    ],
+    "technologies_used": [
+      "TensorFlow"
+    ],
+    "limitations": "Accuracy drops above age 60",
+    "year": 2024,
+    "innovation_score": 82,
+    "ai_confidence": 88.9,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-29",
+    "project_title": "Online Exam Proctoring",
+    "domain": "AI",
+    "problem_statement": "Detect cheating during exams",
+    "algorithms_used": [
+      "YOLO"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "Requires high bandwidth",
+    "year": 2024,
+    "innovation_score": 85,
+    "ai_confidence": 94.7,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-30",
+    "project_title": "Smart Fire Detection",
+    "domain": "IoT",
+    "problem_statement": "Detect fire using sensors",
+    "algorithms_used": [
+      "Threshold Logic"
+    ],
+    "technologies_used": [
+      "Arduino"
+    ],
+    "limitations": "No SMS alert system",
+    "year": 2023,
+    "innovation_score": 86,
+    "ai_confidence": 90.5,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-31",
+    "project_title": "Depression Detection from Text",
+    "domain": "NLP",
+    "problem_statement": "Detect depression via social posts",
+    "algorithms_used": [
+      "LSTM"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "Dataset bias",
+    "year": 2024,
+    "innovation_score": 92,
+    "ai_confidence": 94,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-32",
+    "project_title": "Smart Water Quality Monitor",
+    "domain": "IoT",
+    "problem_statement": "Monitor pH and turbidity",
+    "algorithms_used": [
+      "Sensor Logic"
+    ],
+    "technologies_used": [
+      "ESP32"
+    ],
+    "limitations": "No mobile dashboard",
+    "year": 2023,
+    "innovation_score": 88,
+    "ai_confidence": 91.3,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-33",
+    "project_title": "AI-Based Loan Approval",
+    "domain": "ML",
+    "problem_statement": "Predict loan eligibility",
+    "algorithms_used": [
+      "Logistic Regression"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "Limited financial features",
+    "year": 2024,
+    "innovation_score": 94,
+    "ai_confidence": 88.6,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-34",
+    "project_title": "Object Detection System",
+    "domain": "AI",
+    "problem_statement": "Detect multiple objects in real-time",
+    "algorithms_used": [
+      "YOLOv5"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "Hardware intensive",
+    "year": 2024,
+    "innovation_score": 78,
+    "ai_confidence": 95.1,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-35",
+    "project_title": "Smart Blind Stick",
+    "domain": "IoT",
+    "problem_statement": "Assist visually impaired",
+    "algorithms_used": [
+      "Ultrasonic Logic"
+    ],
+    "technologies_used": [
+      "Arduino"
+    ],
+    "limitations": "No GPS tracking",
+    "year": 2022,
+    "innovation_score": 80,
+    "ai_confidence": 89.7,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-36",
+    "project_title": "Fake Profile Detection",
+    "domain": "ML",
+    "problem_statement": "Detect fake social accounts",
+    "algorithms_used": [
+      "Random Forest"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "High false positives",
+    "year": 2023,
+    "innovation_score": 87,
+    "ai_confidence": 93.5,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-37",
+    "project_title": "AI-Based Skin Cancer Detection",
+    "domain": "AI",
+    "problem_statement": "Detect melanoma from images",
+    "algorithms_used": [
+      "CNN"
+    ],
+    "technologies_used": [
+      "TensorFlow"
+    ],
+    "limitations": "Needs larger dataset",
+    "year": 2024,
+    "innovation_score": 94,
+    "ai_confidence": 92.9,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-38",
+    "project_title": "Smart Weather Predictor",
+    "domain": "ML",
+    "problem_statement": "Predict local weather",
+    "algorithms_used": [
+      "ARIMA"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "Limited region data",
+    "year": 2023,
+    "innovation_score": 88,
+    "ai_confidence": 92.9,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-39",
+    "project_title": "AI-Based Code Reviewer",
+    "domain": "NLP",
+    "problem_statement": "Suggest improvements in code",
+    "algorithms_used": [
+      "Transformer"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "Limited language support",
+    "year": 2025,
+    "innovation_score": 91,
+    "ai_confidence": 92.9,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-40",
+    "project_title": "Smart Attendance via RFID",
+    "domain": "IoT",
+    "problem_statement": "Automate attendance tracking",
+    "algorithms_used": [
+      "RFID Logic"
+    ],
+    "technologies_used": [
+      "Arduino"
+    ],
+    "limitations": "No biometric backup",
+    "year": 2022,
+    "innovation_score": 93,
+    "ai_confidence": 88.9,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-41",
+    "project_title": "AI-Based Salary Predictor",
+    "domain": "ML",
+    "problem_statement": "Predict salary based on skills",
+    "algorithms_used": [
+      "Linear Regression"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "Ignores soft skills",
+    "year": 2024,
+    "innovation_score": 94,
+    "ai_confidence": 95.3,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-42",
+    "project_title": "Smart Accident Alert System",
+    "domain": "IoT",
+    "problem_statement": "Detect vehicle accidents",
+    "algorithms_used": [
+      "Accelerometer Logic"
+    ],
+    "technologies_used": [
+      "ESP8266"
+    ],
+    "limitations": "No hospital auto-alert",
+    "year": 2023,
+    "innovation_score": 71,
+    "ai_confidence": 89.1,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-43",
+    "project_title": "AI Movie Recommendation",
+    "domain": "ML",
+    "problem_statement": "Suggest movies to users",
+    "algorithms_used": [
+      "Collaborative Filtering"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "Cold start issue",
+    "year": 2024,
+    "innovation_score": 72,
+    "ai_confidence": 92.2,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-44",
+    "project_title": "Air Pollution Predictor",
+    "domain": "ML",
+    "problem_statement": "Predict AQI levels",
+    "algorithms_used": [
+      "Random Forest"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "Limited sensor data",
+    "year": 2023,
+    "innovation_score": 80,
+    "ai_confidence": 89.9,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-45",
+    "project_title": "AI-Based Legal Assistant",
+    "domain": "NLP",
+    "problem_statement": "Answer legal queries",
+    "algorithms_used": [
+      "BERT"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "Limited jurisdiction data",
+    "year": 2025,
+    "innovation_score": 87,
+    "ai_confidence": 89.8,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-46",
+    "project_title": "Smart Classroom Monitoring",
+    "domain": "IoT",
+    "problem_statement": "Monitor classroom noise & light",
+    "algorithms_used": [
+      "Sensor Logic"
+    ],
+    "technologies_used": [
+      "ESP32"
+    ],
+    "limitations": "No analytics dashboard",
+    "year": 2023,
+    "innovation_score": 81,
+    "ai_confidence": 94.3,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-47",
+    "project_title": "AI-Based Fraud Detection",
+    "domain": "ML",
+    "problem_statement": "Detect fraudulent transactions",
+    "algorithms_used": [
+      "XGBoost"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "Needs real-time data",
+    "year": 2024,
+    "innovation_score": 94,
+    "ai_confidence": 95.6,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-48",
+    "project_title": "Smart Bus Tracking",
+    "domain": "IoT",
+    "problem_statement": "Track bus location",
+    "algorithms_used": [
+      "GPS Logic"
+    ],
+    "technologies_used": [
+      "Arduino"
+    ],
+    "limitations": "No predictive delay feature",
+    "year": 2022,
+    "innovation_score": 89,
+    "ai_confidence": 92.6,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-49",
+    "project_title": "AI-Based Image Captioning",
+    "domain": "AI",
+    "problem_statement": "Generate captions for images",
+    "algorithms_used": [
+      "CNN + LSTM"
+    ],
+    "technologies_used": [
+      "TensorFlow"
+    ],
+    "limitations": "Limited vocabulary",
+    "year": 2024,
+    "innovation_score": 81,
+    "ai_confidence": 89.4,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_id": "PROJ-MANUAL-50",
+    "project_title": "Handwriting-Based Gender Prediction",
+    "domain": "AI",
+    "problem_statement": "Predict gender from handwriting",
+    "algorithms_used": [
+      "CNN"
+    ],
+    "technologies_used": [
+      "Python"
+    ],
+    "limitations": "Small balanced dataset required",
+    "year": 2025,
+    "innovation_score": 90,
+    "ai_confidence": 89.2,
+    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "scalability_factor": "Medium to High",
+    "future_scope": "Expansion with advanced ML models."
+  }
+]
