@@ -14,13 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function checkBackendHealth() {
+    console.log('--- SYSTEM HEALTH CHECK ---');
+    console.log('API Base:', API_BASE);
     try {
         const res = await fetch(`${API_BASE}/projects?limit=1`);
-        if (!res.ok) throw new Error('Backend not responding correctly');
-        console.log('Backend connected successfully');
+        if (!res.ok) throw new Error('API Response Error: ' + res.status);
+        console.log('✅ Backend connected successfully');
     } catch (err) {
-        console.error('Backend connection failed:', err);
-        alert('Warning: Backend server (localhost:5000) is not reachable. Please ensure the server is running.');
+        console.error('❌ Backend connection failed:', err);
+        // Only alert if we are definitely not reaching the server
+        if (window.location.hostname !== 'localhost') {
+            alert('Mobile Connectivity Note: If you still see this, please clear your browser cache or use Incognito mode. The system has been updated to use relative paths.');
+        }
     }
 }
 
