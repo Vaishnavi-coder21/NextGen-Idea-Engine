@@ -36,10 +36,12 @@ process.on('unhandledRejection', (reason, promise) => {
     console.error('CRITICAL: Unhandled Rejection at:', promise, 'reason:', reason);
 });
 
-const server = app.listen(PORT, '0.0.0.0', () => {
-    console.log(`🚀 NextGen IdeaEngine Backend running at http://localhost:${PORT}`);
-    console.log(`API Base: http://localhost:${PORT}/api`);
-});
+if (process.env.NODE_ENV !== 'production') {
+    const server = app.listen(PORT, '0.0.0.0', () => {
+        console.log(`🚀 NextGen IdeaEngine Backend running at http://localhost:${PORT}`);
+        console.log(`API Base: http://localhost:${PORT}/api`);
+    });
+}
 
-// Prevention from early exit in some environments
-setInterval(() => { }, 1000 * 60 * 60); 
+// Export for Vercel
+module.exports = app;
