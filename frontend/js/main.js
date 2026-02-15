@@ -4,6 +4,17 @@ const API_BASE = '/api';
 
 let currentUser = null;
 
+// --- Error Handling for Mobile Debugging ---
+window.onerror = function (msg, url, lineNo, columnNo, error) {
+    const errorMsg = `Global Error: ${msg}\nLine: ${lineNo}\nURL: ${url}`;
+    console.error(errorMsg);
+    // Show a visible alert for the user on mobile if the site crashes
+    if (window.location.hostname !== 'localhost') {
+        alert("Mobile Debug Alert: " + errorMsg + "\nPlease clear your browser cache and try again.");
+    }
+    return false;
+};
+
 // --- Initialization ---
 document.addEventListener('DOMContentLoaded', () => {
     fetchProjects();
