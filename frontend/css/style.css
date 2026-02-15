@@ -635,9 +635,78 @@ footer {
     box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
 }
 
-.filters select option {
-    background: #0a0a0c;
-    /* Very dark background for dropdown items */
-    color: white;
-    padding: 10px;
+background: #0a0a0c;
+/* Very dark background for dropdown items */
+color: white;
+padding: 10px;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .navbar {
+        top: 10px;
+        width: 95%;
+        padding: 10px 15px;
+    }
+
+    .nav-links {
+        display: none;
+        /* Hide nav links on mobile for simplicity */
+    }
+
+    .hero {
+        flex-direction: column;
+        padding-top: 120px;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin: 0 auto 30px;
+    }
+
+    .hero-btns {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .ai-sphere-container {
+        width: 280px;
+        height: 280px;
+        margin-top: 40px;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .generator-container {
+        padding: 20px;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
 }
