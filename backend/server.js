@@ -14,9 +14,6 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
 
-// Static files (for frontend)
-app.use(express.static(path.join(__dirname, '../frontend')));
-
 // Routes
 const projectRoutes = require('./routes/projectRoutes');
 const analyticsRoutes = require('./routes/analyticsRoutes');
@@ -25,6 +22,9 @@ const authRoutes = require('./routes/authRoutes');
 app.use('/api/projects', projectRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/auth', authRoutes);
+
+// Static files (for frontend)
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 console.log('Using JSON storage for projects');
 
