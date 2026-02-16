@@ -4,11 +4,11 @@ const router = express.Router();
 const fs = require('fs');
 const path = require('path');
 
-const USERS_PATH = path.join(process.cwd(), 'data/users.json');
+const USERS_PATH = path.join(__dirname, '../../data/users.json');
 
 // Ensure data directory exists
-if (!fs.existsSync(path.join(process.cwd(), 'data'))) {
-    fs.mkdirSync(path.join(process.cwd(), 'data'));
+if (!fs.existsSync(path.join(__dirname, '../../data'))) {
+    fs.mkdirSync(path.join(__dirname, '../../data'), { recursive: true });
 }
 if (!fs.existsSync(USERS_PATH)) {
     fs.writeFileSync(USERS_PATH, JSON.stringify([]));

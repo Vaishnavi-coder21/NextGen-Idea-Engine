@@ -1,11 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 
-const DATA_PATH = path.join(process.cwd(), 'data/projects.json');
+const DATA_PATH = path.join(__dirname, '../../data/projects.json');
 
 // Ensure data directory exists
-if (!fs.existsSync(path.join(process.cwd(), 'data'))) {
-    fs.mkdirSync(path.join(process.cwd(), 'data'));
+if (!fs.existsSync(path.join(__dirname, '../../data'))) {
+    fs.mkdirSync(path.join(__dirname, '../../data'), { recursive: true });
 }
 
 // Initialize file if not exists
