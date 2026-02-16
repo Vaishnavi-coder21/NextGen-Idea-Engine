@@ -357,17 +357,21 @@ async function fetchProjects() {
     const params = new URLSearchParams({ search, domain, year });
     try {
         const response = await fetch(`${API_BASE}/projects?${params}`);
+        if (!response.ok) {
+            const errText = await response.text();
+            throw new Error(`Server Error (${response.status}): ${errText}`);
+        }
         const data = await response.json();
         console.log('Fetched projects data:', data);
         if (Array.isArray(data)) {
             renderProjects(data);
         } else {
             console.error('API did not return an array:', data);
-            renderProjects([]);
+            renderProjects([], 'Data format error from server.');
         }
     } catch (err) {
         console.error('Error fetching projects:', err);
-        renderProjects([]);
+        renderProjects([], err.message);
     }
 }
 
@@ -419,9 +423,18 @@ async function fetchAnalytics() {
 
 // --- Rendering ---
 
-function renderProjects(projects) {
+function renderProjects(projects, errorMsg = null) {
     const grid = document.getElementById('project-grid');
     if (!grid) return;
+
+    if (errorMsg) {
+        grid.innerHTML = `<div class="text-center" style="width: 100%; grid-column: 1/-1; padding: 40px; color: #ff4d4d;">
+            <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 10px;"></i>
+            <p><strong>Connection Issue:</strong> ${errorMsg}</p>
+            <button class="btn btn-outline" style="margin-top: 10px;" onclick="fetchProjects()">Retry Connection</button>
+        </div>`;
+        return;
+    }
 
     if (!projects || projects.length === 0) {
         grid.innerHTML = '<div class="text-center" style="width: 100%; grid-column: 1/-1; padding: 40px; color: var(--text-dim);">No projects found matching your criteria.</div>';
