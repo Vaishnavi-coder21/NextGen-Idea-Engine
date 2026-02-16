@@ -357,10 +357,17 @@ async function fetchProjects() {
     const params = new URLSearchParams({ search, domain, year });
     try {
         const response = await fetch(`${API_BASE}/projects?${params}`);
-        const projects = await response.json();
-        renderProjects(projects);
+        const data = await response.json();
+        console.log('Fetched projects data:', data);
+        if (Array.isArray(data)) {
+            renderProjects(data);
+        } else {
+            console.error('API did not return an array:', data);
+            renderProjects([]);
+        }
     } catch (err) {
         console.error('Error fetching projects:', err);
+        renderProjects([]);
     }
 }
 
@@ -416,20 +423,28 @@ function renderProjects(projects) {
     const grid = document.getElementById('project-grid');
     if (!grid) return;
 
-    grid.innerHTML = projects.map(p => `
-        <div class="project-card glass glass-hover">
-            <div class="project-meta">
-                <span>${p.domain}</span>
-                <span class="innovation-badge">${p.innovation_score}% Innovation</span>
+    if (!projects || projects.length === 0) {
+        grid.innerHTML = '<div class="text-center" style="width: 100%; grid-column: 1/-1; padding: 40px; color: var(--text-dim);">No projects found matching your criteria.</div>';
+        return;
+    }
+
+    grid.innerHTML = projects.map(p => {
+        const algos = Array.isArray(p.algorithms_used) ? p.algorithms_used.join(', ') : 'Standard Heuristics';
+        return `
+            <div class="project-card glass glass-hover">
+                <div class="project-meta">
+                    <span>${p.domain || 'General'}</span>
+                    <span class="innovation-badge">${p.innovation_score || 0}% Innovation</span>
+                </div>
+                <h3>${p.project_title || 'Untitled Project'}</h3>
+                <p>${p.limitations || p.problem_statement || 'Research in progress...'}</p>
+                <div style="margin-top: 15px; color: var(--text-dim); font-size: 0.85rem">
+                    <strong>Algorithm:</strong> ${algos}
+                </div>
+                <button class="btn btn-outline" style="margin-top: 15px; width: 100%" onclick="alert('Domain: ${p.domain}\\nAlgorithm: ${algos}')">View Details</button>
             </div>
-            <h3>${p.project_title}</h3>
-            <p>${p.limitations}</p>
-            <div style="margin-top: 15px; color: var(--text-dim); font-size: 0.85rem">
-                <strong>Algorithm:</strong> ${p.algorithms_used.join(', ')}
-            </div>
-            <button class="btn btn-outline" style="margin-top: 15px; width: 100%" onclick="alert('Domain: ${p.domain}\\nAlgorithm: ${p.algorithms_used}\\nGap: ${p.research_gap}')">View Details</button>
-        </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 function renderInnovation(data) {
