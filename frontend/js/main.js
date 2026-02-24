@@ -622,15 +622,23 @@ function initCharts(projects) {
 }
 
 async function viewProjectAnalysis(id) {
+    console.log('🧐 Viewing Analysis for ID:', id);
     const modal = document.getElementById('result-modal');
     const body = document.getElementById('result-modal-body');
-    if (!modal || !body) return;
+    if (!modal || !body) return console.error('Modal elements missing');
 
     try {
         const res = await fetch(`${API_BASE}/projects`, { headers: getAuthHeader() });
         const data = await res.json();
-        const p = data.find(proj => (proj._id === id || proj.project_id === id));
+        console.log('📦 Projects Loaded:', data.length);
+
+        const p = data.find(proj => {
+            const pid = String(proj.project_id || proj._id);
+            return pid === String(id);
+        });
+
         if (p) {
+            console.log('✅ Project Found:', p.project_title);
             body.innerHTML = `
                 <h2 class="gradient-text mb-20">${p.project_title}</h2>
                 <div class="analysis-grid glass-inner">
