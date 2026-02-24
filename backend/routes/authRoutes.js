@@ -43,7 +43,11 @@ const readUsers = () => {
             const raw = fs.readFileSync(USERS_PATH, 'utf8');
             const fileUsers = JSON.parse(raw);
             fileUsers.forEach(fu => {
-                if (!users.find(u => u.email === fu.email)) {
+                const existingIndex = users.findIndex(u => u.email === fu.email);
+                if (existingIndex !== -1) {
+                    // Update existing PRIMARY_USER with file data (allows password change via JSON)
+                    users[existingIndex] = { ...users[existingIndex], ...fu };
+                } else {
                     users.push(fu);
                 }
             });
@@ -97,11 +101,15 @@ router.post('/login', async (req, res) => {
 
         if (!user) return res.status(401).json({ message: 'Invalid credentials. User not found.' });
 
-        // Check if it's a primary user with plain password or a hashed password
+        // Robust comparison: handles plain-text (Legacy/Primary) and bcrypt hashes
         let isMatch = false;
-        if (PRIMARY_USERS.find(pu => pu.email === email && pu.password === password)) {
+
+        // Priority 1: Direct comparison (for plain passwords in users.json or PRIMARY_USERS)
+        if (user.password === password) {
             isMatch = true;
-        } else {
+        }
+        // Priority 2: Bcrypt comparison if the stored password "looks" like a hash
+        else if (user.password && user.password.startsWith('$2b$')) {
             isMatch = await bcrypt.compare(password, user.password).catch(() => false);
         }
 
