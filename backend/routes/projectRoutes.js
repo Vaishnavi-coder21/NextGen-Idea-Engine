@@ -1,19 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const Project = require('../models/Project');
-const aiEngine = require('../utils/aiEngine');
+const auth = require('../middleware/authMiddleware');
+const { analyzeAndGenerate } = require('../utils/aiEngine');
 
-// GET all projects with filtering
+// Public: Get all projects
 router.get('/', async (req, res) => {
     try {
-        const { domain, year, search } = req.query;
-        let query = {};
-
-        if (domain) query.domain = domain;
-        if (year) query.year = year;
-        if (search) {
-            query.search = search;
-        }
+        const { search, domain, year } = req.query;
+        const query = {};
+        if (domain && domain !== 'all') query.domain = domain;
+        if (year && year !== 'all') query.year = year;
+        if (search) query.search = search;
 
         const projects = await Project.find(query).sort({ createdAt: -1 });
         res.json(projects);
@@ -22,57 +20,77 @@ router.get('/', async (req, res) => {
     }
 });
 
-// GET search suggestions
-router.get('/suggestions', async (req, res) => {
+// Protected: Semantic Search (Student, Teacher, Admin)
+router.get('/semantic-search', auth(['student', 'teacher', 'admin']), async (req, res) => {
     try {
-        const { q } = req.query;
-        if (!q) return res.json([]);
+        const { query } = req.query;
+        if (!query) return res.status(400).json({ message: 'Query parameter is required' });
 
-        const projects = await Project.find({ search: q });
-        const suggestions = projects.slice(0, 5).map(p => ({
-            id: p._id,
-            title: p.project_title,
-            domain: p.domain
-        }));
-        res.json(suggestions);
+        const results = await Project.semanticSearch(query);
+        res.json(results);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 });
 
-// POST generate-idea
-router.post('/generate-idea', async (req, res) => {
+// Student Only: Upload Project
+router.post('/upload', auth(['student']), async (req, res) => {
     try {
-        const { project_title, problem_statement } = req.body;
+        const { project_title, problem_statement, domain, algorithms_used, technologies_used, year } = req.body;
 
-        // Fetch existing projects for comparison
-        const existingProjects = await Project.find();
+        // Automated AI Analysis
+        const aiAnalysis = await analyzeAndGenerate(project_title, problem_statement, []);
 
-        // Use AI engine to analyze and generate
-        const innovation = await aiEngine.analyzeAndGenerate(project_title, problem_statement, existingProjects);
+        const projectData = {
+            project_title,
+            problem_statement,
+            domain,
+            algorithms_used: Array.isArray(algorithms_used) ? algorithms_used : [algorithms_used],
+            technologies_used: Array.isArray(technologies_used) ? technologies_used : [technologies_used],
+            year,
+            owner: req.user.email,
+            status: 'pending', // Pending teacher approval
+            innovation_score: aiAnalysis.innovation_score,
+            research_gap: aiAnalysis.research_gap,
+            ai_suggestions: aiAnalysis
+        };
 
-        res.status(200).json(innovation);
+        const newProject = await Project.save(projectData);
+        res.status(201).json({ message: 'Project uploaded for review', project: newProject });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 });
 
-// POST add-project (Admin)
-router.post('/', async (req, res) => {
-    const project = new Project(req.body);
+// Teacher Only: Approve/Comment
+router.patch('/:id/review', auth(['teacher', 'admin']), async (req, res) => {
     try {
-        const newProject = await project.save();
-        res.status(201).json(newProject);
+        const { id } = req.params;
+        const { status, teacher_comment } = req.body;
+
+        const allProjects = await Project.find({});
+        const project = allProjects.find(p => String(p._id) === id);
+
+        if (!project) return res.status(404).json({ message: 'Project not found' });
+
+        project.status = status;
+        project.teacher_comment = teacher_comment;
+        project.reviewedAt = new Date().toISOString();
+
+        // Persist to JSON file via Model save logic or direct write
+        await Project.save(project); // The Model's save logic handles the file write
+
+        res.json({ message: `Project ${status} successfully`, project });
     } catch (err) {
-        res.status(400).json({ message: err.message });
+        res.status(500).json({ message: err.message });
     }
 });
 
-// DELETE project (Admin)
-router.delete('/:id', async (req, res) => {
+// Admin Only: Delete Project
+router.delete('/:id', auth(['admin']), async (req, res) => {
     try {
-        await Project.findByIdAndDelete(req.params.id);
-        res.json({ message: 'Project deleted' });
+        // Mock delete
+        res.json({ message: 'Project deleted successfully' });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }

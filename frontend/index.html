@@ -26,17 +26,43 @@
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#generate">Generate Idea</a></li>
                 <li><a href="#repository">Project Repository</a></li>
-                <li><a href="#dashboard">Dashboard</a></li>
-                <li><a href="#admin">Admin</a></li>
+                <li><a href="#dashboard" id="nav-insights">AI Insights</a></li>
+                <li><a href="#dashboard" id="nav-assistant">AI Assistant</a></li>
             </ul>
             <div class="nav-auth">
+                <div id="user-role-display" class="glass hidden"
+                    style="padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; color: var(--accent);"></div>
                 <button class="btn btn-outline" id="login-btn">Login</button>
                 <button class="btn btn-primary" id="signup-btn">Sign Up</button>
+                <button class="btn btn-outline hidden" id="logout-btn">Logout</button>
             </div>
         </div>
     </nav>
 
     <main>
+        <!-- Student Upload Section -->
+        <section id="student-actions" class="upload-section hidden glass-section">
+            <div class="container">
+                <h2 class="section-title">Upload <span class="gradient-text">Project</span></h2>
+                <div class="upload-form glass">
+                    <div class="input-grid">
+                        <input type="text" id="upload-title" placeholder="Project Title" class="glass">
+                        <select id="upload-domain" class="glass">
+                            <option value="AI">Artificial Intelligence</option>
+                            <option value="Blockchain">Blockchain</option>
+                            <option value="IoT">Internet of Things</option>
+                            <option value="Healthcare">Healthcare</option>
+                        </select>
+                        <input type="text" id="upload-year" placeholder="Year" class="glass">
+                    </div>
+                    <textarea id="upload-problem" placeholder="Problem Statement..." class="glass"></textarea>
+                    <input type="text" id="upload-algo" placeholder="Algorithms (comma separated)" class="glass">
+                    <input type="text" id="upload-tech" placeholder="Technologies (comma separated)" class="glass">
+                    <button id="upload-submit" class="btn btn-primary w-full">Submit for AI Analysis</button>
+                </div>
+            </div>
+        </section>
+
         <!-- Hero Section -->
         <section id="home" class="hero">
             <div class="hero-content">
@@ -107,11 +133,20 @@
         <section id="repository" class="repo-section">
             <div class="section-header">
                 <h2 class="section-title">Project <span class="gradient-text">Repository</span></h2>
-                <div class="search-bar glass">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="repo-search" placeholder="Search by domain, algorithm or technology..."
-                        autocomplete="off">
-                    <div id="search-suggestions" class="suggestions-list glass hidden"></div>
+                <div class="search-bar-container glass">
+                    <div class="search-mode-toggle">
+                        <span id="search-mode-text">Keyword Search</span>
+                        <label class="switch">
+                            <input type="checkbox" id="semantic-toggle">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="repo-search" placeholder="Search by domain, algorithm or technology..."
+                            autocomplete="off">
+                        <div id="search-suggestions" class="suggestions-list glass hidden"></div>
+                    </div>
                 </div>
             </div>
             <div class="filters">
@@ -132,32 +167,91 @@
             </div>
         </section>
 
-        <!-- Dashboard -->
+        <!-- Dashboard (Shared) -->
         <section id="dashboard" class="dashboard-section">
             <h2 class="section-title">Innovation <span class="gradient-text">Insights</span></h2>
-            <div class="dashboard-grid">
-                <div class="stat-card glass">
-                    <h3>Total Projects</h3>
-                    <div class="stat-val" id="total-projects">52</div>
+
+            <div class="dashboard-tabs">
+                <button class="tab-btn active" data-tab="analytics"><i class="fas fa-chart-line"></i> Overview</button>
+                <button class="tab-btn" data-tab="chatbot"><i class="fas fa-robot"></i> AI Assistant</button>
+            </div>
+
+            <div id="analytics-tab" class="tab-content active">
+                <div class="dashboard-grid">
+                    <div class="stat-card glass">
+                        <h3>Total Projects</h3>
+                        <div class="stat-val" id="total-projects">52</div>
+                    </div>
+                    <div class="chart-card glass">
+                        <h3>Domain Distribution</h3>
+                        <canvas id="domain-chart"></canvas>
+                    </div>
+                    <div class="chart-card glass">
+                        <h3>Algorithm Usage</h3>
+                        <canvas id="algo-chart"></canvas>
+                    </div>
+                    <div class="chart-card glass">
+                        <h3>Innovation Trend</h3>
+                        <canvas id="trend-chart"></canvas>
+                    </div>
                 </div>
-                <div class="chart-card glass">
-                    <h3>Domain Distribution</h3>
-                    <canvas id="domain-chart"></canvas>
-                </div>
-                <div class="chart-card glass">
-                    <h3>Algorithm Usage</h3>
-                    <canvas id="algo-chart"></canvas>
-                </div>
-                <div class="chart-card glass">
-                    <h3>Innovation Trend</h3>
-                    <canvas id="trend-chart"></canvas>
+            </div>
+
+            <div id="chatbot-tab" class="tab-content">
+                <div class="chatbot-container glass">
+                    <div class="chatbot-header">
+                        <h3 class="gradient-text">NextGen AI Innovation Butler</h3>
+                        <p class="text-dim text-sm">Empowering your project with real-time AI suggestions.</p>
+                    </div>
+                    <div id="chat-messages" class="chat-messages">
+                        <div class="message bot">Hello! I'm your AI Innovation Assistant. How can I help you today?
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chat-input" placeholder="Ask me anything about innovation..."
+                            class="glass">
+                        <button id="chat-send" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Admin Access (Simple trigger for demo) -->
-        <section id="admin" class="admin-section hidden">
-            <!-- Admin Panel content -->
+        <!-- Teacher Review Section -->
+        <section id="teacher-actions" class="teacher-section hidden glass-section">
+            <div class="container">
+                <h2 class="section-title">Teacher <span class="gradient-text">Review Queue</span></h2>
+                <div id="pending-projects-list" class="review-grid">
+                    <!-- Pending projects will be injected here -->
+                    <p class="text-center opacity-50">No projects pending review at the moment.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Control Panel -->
+        <section id="admin-actions" class="admin-section hidden glass-section">
+            <div class="container">
+                <h2 class="section-title">Admin <span class="gradient-text">Control Panel</span></h2>
+                <div class="admin-grid">
+                    <div class="admin-card glass">
+                        <h3>User Management</h3>
+                        <div class="table-container">
+                            <table id="user-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="user-list-body">
+                                    <!-- Users injected here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
     </main>
@@ -207,6 +301,11 @@
                     <input type="text" id="signup-name" placeholder="Full Name" class="glass">
                     <input type="email" id="signup-email" placeholder="Email" class="glass">
                     <input type="password" id="signup-password" placeholder="Password" class="glass">
+                    <select id="signup-role" class="glass">
+                        <option value="student">I am a Student</option>
+                        <option value="teacher">I am a Teacher</option>
+                        <option value="admin">I am an Admin</option>
+                    </select>
                     <button class="btn btn-primary w-full" id="signup-submit">Create Account</button>
                     <div class="divider"><span>OR</span></div>
                     <button class="btn btn-outline w-full google-btn" id="google-signup">
@@ -215,6 +314,15 @@
                     <p>Already have an account? <a href="#" id="to-login">Login</a></p>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Premium Result Modal -->
+    <div id="result-modal" class="modal hidden">
+        <div class="modal-content glass-large">
+            <span class="close-result"
+                onclick="document.getElementById('result-modal').classList.add('hidden')">&times;</span>
+            <div id="result-modal-body"></div>
         </div>
     </div>
 

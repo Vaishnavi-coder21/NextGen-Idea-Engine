@@ -961,5 +961,48 @@
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
     "future_scope": "Expansion with advanced ML models."
+  },
+  {
+    "project_title": "Smart Healthcare AI",
+    "problem_statement": "Detecting anomalies in heart rates using federated learning",
+    "domain": "Healthcare",
+    "algorithms_used": [
+      "Federated Learning",
+      "LSTM"
+    ],
+    "technologies_used": [
+      "Python",
+      "PyTorch"
+    ],
+    "year": 2025,
+    "owner": "student_20260222230959@example.com",
+    "status": "pending",
+    "innovation_score": 92,
+    "research_gap": "Lack of high-performance Transformer-XL implementation in traditional AI workflows.",
+    "ai_suggestions": {
+      "enhanced_title": "NextGen: Smart Healthcare AI with Transformer-XL",
+      "improved_problem_statement": "While current solutions for Smart Healthcare AI struggle with scalability, this approach leverages Transformer-XL to bridge the performance gap identified in existing research.",
+      "suggested_algorithms": [
+        "Transformer-XL",
+        "Reasoning Models (o1-like)"
+      ],
+      "suggested_technologies": [
+        "Next.js 14",
+        "PyTorch Lightning",
+        "Hugging Face Diffusers"
+      ],
+      "research_gap": "Lack of high-performance Transformer-XL implementation in traditional AI workflows.",
+      "innovation_score": 92,
+      "ai_confidence": 94.2,
+      "future_scope": "Integration with real-time streaming data and autonomous agentic workflows.",
+      "scalability_suggestion": "Microservices architecture with Kubernetes for dynamic scaling."
+    },
+    "_id": "1771782004183",
+    "createdAt": "2026-02-22T17:40:04.183Z",
+    "embedding": [
+      0.8728287340123022,
+      0.5285903210736076,
+      0.7356839051752657
+    ]
   }
 ]
