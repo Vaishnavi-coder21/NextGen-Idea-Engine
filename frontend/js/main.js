@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupStaticListeners();
     setupDashboardTabs();
     checkBackendHealth();
+    initGoogleAuth();
 });
 
 async function checkBackendHealth() {
@@ -222,14 +223,8 @@ async function login() {
         });
         const data = await res.json();
         if (res.ok) {
-            currentUser = data.user;
-            authToken = data.token;
-            localStorage.setItem('user', JSON.stringify(currentUser));
-            localStorage.setItem('token', authToken);
-            updateAuthUI();
-            hideAuthModal();
+            handleAuthSuccess(data);
             alert(`Welcome, ${currentUser.name}!`);
-            fetchProjects();
         } else {
             console.error('Login Error:', data.message);
             alert(data.message || 'Invalid Credentials');
@@ -237,6 +232,85 @@ async function login() {
     } catch (err) {
         console.error('Login Fetch Failed:', err);
         alert('Login Failed: Check connection');
+    }
+}
+
+function handleAuthSuccess(data) {
+    currentUser = data.user;
+    authToken = data.token;
+    localStorage.setItem('user', JSON.stringify(currentUser));
+    localStorage.setItem('token', authToken);
+    updateAuthUI();
+    hideAuthModal();
+    fetchProjects();
+}
+
+async function handleGoogleAuth(response) {
+    try {
+        console.log('Google Auth Response received');
+        const signupForm = document.getElementById('signup-form');
+        const role = (signupForm && !signupForm.classList.contains('hidden'))
+            ? document.getElementById('signup-role')?.value
+            : document.getElementById('login-role-choice')?.value || 'student';
+        const res = await fetch(`${API_BASE}/auth/google`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ credential: response.credential, role })
+        });
+        const data = await res.json();
+        if (res.ok) {
+            handleAuthSuccess(data);
+            alert(`Google Login Successful! Welcome, ${data.user.name}`);
+        } else {
+            alert('Google Auth Failed: ' + data.message);
+        }
+    } catch (err) {
+        console.error('Google Auth Error:', err);
+        alert('Google Login Failed');
+    }
+}
+
+async function initGoogleAuth() {
+    // Wait for the script to load if it hasn't already
+    if (typeof google === 'undefined') {
+        setTimeout(initGoogleAuth, 100);
+        return;
+    }
+
+    try {
+        const res = await fetch(`${API_BASE}/auth/google/client-id`);
+        const { clientId } = await res.json();
+
+        if (!clientId || clientId.includes('your_google_client_id')) {
+            console.warn('Google Client ID not configured');
+            const googleBtns = ['google-login', 'google-signup'];
+            googleBtns.forEach(id => {
+                const btn = document.getElementById(id);
+                if (btn) {
+                    btn.onclick = () => alert('Google Sign-In is not configured yet. Please add your GOOGLE_CLIENT_ID to the .env file to enable this feature.');
+                }
+            });
+            return;
+        }
+
+        google.accounts.id.initialize({
+            client_id: clientId,
+            callback: handleGoogleAuth
+        });
+
+        const googleBtns = ['google-login', 'google-signup'];
+        googleBtns.forEach(id => {
+            const parent = document.getElementById(id);
+            if (parent) {
+                google.accounts.id.renderButton(parent, {
+                    theme: 'outline',
+                    size: 'large',
+                    width: parent.offsetWidth
+                });
+            }
+        });
+    } catch (e) {
+        console.error('Failed to init Google Auth:', e);
     }
 }
 
@@ -257,8 +331,8 @@ async function signup() {
         });
         const data = await res.json();
         if (res.ok) {
-            alert('Signup Successful! Please login.');
-            showAuthModal('login');
+            handleAuthSuccess(data);
+            alert(`Signup Successful! Welcome, ${data.user.name}`);
         } else {
             console.error('Signup Error:', data.message);
             alert(data.message || 'Signup Failed');
@@ -364,12 +438,10 @@ function renderProjects(projects) {
 
 async function fetchPendingProjects() {
     try {
-        // In a real app, this would be a filtered API call. For demo, we fetch all and filter pending.
-        const res = await fetch(`${API_BASE}/projects`, { headers: getAuthHeader() });
+        const res = await fetch(`${API_BASE}/projects/pending`, { headers: getAuthHeader() });
         const data = await res.json();
-        const pending = data.filter(p => p.status === 'pending');
-        renderPending(pending);
-    } catch (e) { }
+        renderPending(data);
+    } catch (e) { console.error('Failed to fetch pending projects', e); }
 }
 
 function renderPending(projects) {
@@ -453,16 +525,20 @@ async function handleSearchInput() {
         return;
     }
 
-    // Live filtering for suggestions from current grid
-    const projects = Array.from(document.querySelectorAll('.project-card h3')).map(h3 => h3.innerText);
-    const filtered = projects.filter(p => p.toLowerCase().includes(search)).slice(0, 5);
+    try {
+        let url = `${API_BASE}/projects?search=${search}`;
+        if (isSemanticSearch && search.length > 3) url = `${API_BASE}/projects/semantic-search?query=${search}`;
+        const res = await fetch(url, { headers: getAuthHeader() });
+        const projects = await res.json();
+        const filtered = projects.map(p => p.project_title).slice(0, 5);
 
-    if (filtered.length > 0) {
-        suggestions.innerHTML = filtered.map(f => `<div class="suggestion-item" onclick="document.getElementById('repo-search').value='${f}'; window.fetchProjects(); document.getElementById('search-suggestions').classList.add('hidden')">${f}</div>`).join('');
-        suggestions.classList.remove('hidden');
-    } else {
-        suggestions.classList.add('hidden');
-    }
+        if (filtered.length > 0) {
+            suggestions.innerHTML = filtered.map(f => `<div class="suggestion-item" onclick="document.getElementById('repo-search').value='${f}'; window.fetchProjects(); document.getElementById('search-suggestions').classList.add('hidden')">${f}</div>`).join('');
+            suggestions.classList.remove('hidden');
+        } else {
+            suggestions.classList.add('hidden');
+        }
+    } catch (e) { console.error('Search suggestion fetch failed', e); }
 
     clearTimeout(window.searchTimeout);
     window.searchTimeout = setTimeout(fetchProjects, 300);
@@ -673,7 +749,7 @@ async function handleChat() {
     const input = document.getElementById('chat-input');
     const container = document.getElementById('chat-messages');
     if (!input || !container) return;
-    const text = input.value.trim().toLowerCase();
+    const text = input.value.trim();
     if (!text) return;
 
     // Add user message
@@ -686,50 +762,59 @@ async function handleChat() {
 
     // Create typing indicator
     const typingMsg = document.createElement('div');
-    typingMsg.className = 'message bot typing';
+    typingMsg.className = 'typing-indicator';
     typingMsg.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
     container.appendChild(typingMsg);
     container.scrollTop = container.scrollHeight;
 
-    // Advanced contextual bot response with typing effect
-    setTimeout(() => {
+    const webSearch = false; // Feature disabled by user request
+
+    try {
+        const res = await fetch(`${API_BASE}/chat`, {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': authToken ? `Bearer ${authToken}` : ''
+            },
+            body: JSON.stringify({ message: text, webSearch })
+        });
+        
         typingMsg.remove();
         const botMsg = document.createElement('div');
         botMsg.className = 'message bot';
+        
+        if (res.ok) {
+            const data = await res.json();
+            const rawText = data.response || "";
+            // Format: Bold **text**, newline to <br>, and auto-linking tech terms to Scholar
+            let formatted = rawText
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\n/g, '<br>');
+            
+            // Auto-link 2.0: If it looks like a tech stack or domain, add a scholar helper link
+            const domains = ['AI', 'ML', 'IoT', 'Blockchain', 'Cybersecurity', 'Cloud'];
+            domains.forEach(d => {
+                const regex = new RegExp(`\\b${d}\\b`, 'gi');
+                formatted = formatted.replace(regex, `<span class="accent-link" onclick="window.open('https://scholar.google.com/scholar?q=${d}+innovation+2025', '_blank')">${d}</span>`);
+            });
 
-        let response = "I'm not sure about that specific detail. Can you tell me more about your project domain?";
-
-        if (text.includes('hi') || text.includes('hello')) {
-            response = "Hello! I am the NextGen Innovation Assistant. I can help you find research gaps or suggest technologies for your project. What are you working on?";
-        } else if (text.includes('ai') || text.includes('intelligence') || text.includes('ml')) {
-            response = "For AI projects, the biggest innovation gap right now is in Explainable AI (XAI) and resource-efficient training on edge devices. Have you considered these?";
-        } else if (text.includes('blockchain') || text.includes('crypto')) {
-            response = "In Blockchain, scalability and interoperability between Layer 2 solutions are the main research focuses. Are you using Ethereum or Hyperledger? Innovation in Zero-Knowledge Proofs (ZKPs) is also a key area to explore.";
-        } else if (text.includes('health') || text.includes('medical')) {
-            response = "Healthcare innovation is moving towards predictive diagnostics and HIPAA-compliant data sharing. Privacy-preserving federated learning is a great research gap. Have you looked into remote patient monitoring systems?";
-        } else if (text.includes('security') || text.includes('privacy') || text.includes('cyber')) {
-            response = "Cybersecurity is currently focusing on Zero Trust Architecture and AI-driven automated threat response. Quantum-resistant cryptography is also a premium research niche.";
-        } else if (text.includes('iot') || text.includes('internet of things') || text.includes('sensor')) {
-            response = "IoT research gaps often revolve around energy-efficient mesh networks and decentralizing intelligence with Edge AI. Security in heterogeneous device networks is another critical gap.";
-        } else if (text.includes('help') || text.includes('what can you do')) {
-            response = "I can analyze your project title, suggest algorithms (like CNNs, Transformers, or LSTM), and identify research gaps in fields like IoT, AI, and Blockchain.";
-        } else if (text.includes('thank')) {
-            response = "You're welcome! Let me know if you have more questions about your innovation blueprint.";
+            botMsg.innerHTML = formatted;
         } else {
-            const genericResponses = [
-                "That's a great project idea! Have you considered the research gap in real-time processing?",
-                "I've analyzed similar projects in my database. This domain is currently focused on edge computing optimizations.",
-                "Interesting! You could increase the innovation score by integrating more advanced transformer models.",
-                "The current market gap for this idea lies in the lack of privacy-preserving features.",
-                "I recommend looking into federated learning as a potential algorithm upgrade for this project."
-            ];
-            response = genericResponses[Math.floor(Math.random() * genericResponses.length)];
+            const data = await res.json().catch(() => ({}));
+            botMsg.innerHTML = data.fallback || data.details || data.error || "I'm currently recalibrating my AI sensors. Please check your API configuration.";
         }
 
-        botMsg.textContent = response;
         container.appendChild(botMsg);
         container.scrollTop = container.scrollHeight;
-    }, 1500); // 1.5s typing delay for realism
+    } catch (e) {
+        typingMsg.remove();
+        const botMsg = document.createElement('div');
+        botMsg.className = 'message bot';
+        botMsg.textContent = "Offline: Unable to reach the NextGen AI server.";
+        container.appendChild(botMsg);
+        container.scrollTop = container.scrollHeight;
+        console.error('Chat error:', e);
+    }
 }
 
 // Attach functions to window for onclick handlers and global access

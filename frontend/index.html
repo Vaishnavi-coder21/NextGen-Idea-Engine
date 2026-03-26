@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
 <body>
@@ -207,10 +208,17 @@
                         <div class="message bot">Hello! I'm your AI Innovation Assistant. How can I help you today?
                         </div>
                     </div>
+                    <div id="typing-indicator" class="typing-indicator hidden">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
                     <div class="chat-input-area">
-                        <input type="text" id="chat-input" placeholder="Ask me anything about innovation..."
-                            class="glass">
-                        <button id="chat-send" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+                        <div class="input-group">
+                            <input type="text" id="chat-input" placeholder="Ask me anything about innovation..."
+                                class="glass">
+                            <button id="chat-send" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -278,6 +286,10 @@
                         Password?</a>
                     <button class="btn btn-primary w-full" id="login-submit">Login</button>
                     <div class="divider"><span>OR</span></div>
+                    <select id="login-role-choice" class="glass" style="margin-bottom: 10px; font-size: 0.8rem;">
+                        <option value="student">Login/Signup as Student</option>
+                        <option value="teacher">Login/Signup as Teacher</option>
+                    </select>
                     <button class="btn btn-outline w-full google-btn" id="google-login">
                         <i class="fab fa-google"></i> Sign in with Google
                     </button>
@@ -304,7 +316,6 @@
                     <select id="signup-role" class="glass">
                         <option value="student">I am a Student</option>
                         <option value="teacher">I am a Teacher</option>
-                        <option value="admin">I am an Admin</option>
                     </select>
                     <button class="btn btn-primary w-full" id="signup-submit">Create Account</button>
                     <div class="divider"><span>OR</span></div>

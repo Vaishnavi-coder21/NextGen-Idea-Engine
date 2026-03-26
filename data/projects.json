@@ -1,24 +1,45 @@
 [
   {
     "project_id": "PROJ-MANUAL-1",
-    "project_title": "AI Smart Attendance System",
+    "project_title": "Cancer detection",
     "domain": "AI",
-    "problem_statement": "Automate attendance using face recognition",
+    "problem_statement": "Cancer detection using AI",
     "algorithms_used": [
-      "CNN",
-      "Haar Cascade"
+      "CNN"
     ],
     "technologies_used": [
-      "Python",
-      "OpenCV"
+      "AI"
     ],
     "limitations": "Poor lighting affects accuracy",
-    "year": 2024,
-    "innovation_score": 76,
+    "year": "2025",
+    "innovation_score": 75,
     "ai_confidence": 89.5,
-    "research_gap": "Standard implementation lacking robust real-time optimization.",
+    "research_gap": "Needs further API configuration to analyze deep research gaps.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved",
+    "owner": "jadhavsrushti101@gmail.com",
+    "ai_suggestions": {
+      "enhanced_title": "NextGen: Cancer detection",
+      "improved_problem_statement": "Cancer detection using AI",
+      "suggested_algorithms": [
+        "Inference Engines",
+        "Neural Networks"
+      ],
+      "suggested_technologies": [
+        "React",
+        "Node.js",
+        "Python"
+      ],
+      "research_gap": "Needs further API configuration to analyze deep research gaps.",
+      "innovation_score": 75,
+      "ai_confidence": 80,
+      "future_scope": "Integration with cloud services.",
+      "scalability_suggestion": "Containerization with Docker."
+    },
+    "updatedAt": "2026-03-20T10:53:19.495Z",
+    "teacher_comment": "",
+    "reviewedAt": "2026-03-20T10:53:19.492Z"
   },
   {
     "project_id": "PROJ-MANUAL-2",
@@ -38,7 +59,8 @@
     "ai_confidence": 90,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-3",
@@ -59,7 +81,8 @@
     "ai_confidence": 88.8,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-4",
@@ -79,7 +102,8 @@
     "ai_confidence": 92.5,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-5",
@@ -99,7 +123,8 @@
     "ai_confidence": 93.6,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-6",
@@ -119,7 +144,8 @@
     "ai_confidence": 91.8,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-7",
@@ -139,7 +165,8 @@
     "ai_confidence": 89.8,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-8",
@@ -160,7 +187,8 @@
     "ai_confidence": 92.9,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-9",
@@ -180,7 +208,8 @@
     "ai_confidence": 89.7,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-10",
@@ -200,7 +229,8 @@
     "ai_confidence": 89,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-11",
@@ -219,7 +249,8 @@
     "ai_confidence": 95.8,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-12",
@@ -238,7 +269,8 @@
     "ai_confidence": 89.5,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-13",
@@ -257,7 +289,8 @@
     "ai_confidence": 90.6,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-14",
@@ -276,7 +309,8 @@
     "ai_confidence": 92.8,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-15",
@@ -295,7 +329,8 @@
     "ai_confidence": 95.6,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-16",
@@ -314,7 +349,8 @@
     "ai_confidence": 93,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-17",
@@ -333,7 +369,8 @@
     "ai_confidence": 91.9,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-18",
@@ -352,7 +389,8 @@
     "ai_confidence": 95.6,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-19",
@@ -371,7 +409,8 @@
     "ai_confidence": 93.1,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-20",
@@ -390,7 +429,8 @@
     "ai_confidence": 93.8,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-21",
@@ -409,7 +449,8 @@
     "ai_confidence": 90.4,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-22",
@@ -428,7 +469,8 @@
     "ai_confidence": 89.1,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-23",
@@ -447,7 +489,8 @@
     "ai_confidence": 92,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-24",
@@ -466,7 +509,8 @@
     "ai_confidence": 93.4,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-25",
@@ -485,7 +529,8 @@
     "ai_confidence": 88.7,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-26",
@@ -504,7 +549,8 @@
     "ai_confidence": 90.6,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-27",
@@ -523,7 +569,8 @@
     "ai_confidence": 93,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-28",
@@ -542,7 +589,8 @@
     "ai_confidence": 88.9,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-29",
@@ -561,7 +609,8 @@
     "ai_confidence": 94.7,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-30",
@@ -580,7 +629,8 @@
     "ai_confidence": 90.5,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-31",
@@ -599,7 +649,8 @@
     "ai_confidence": 94,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-32",
@@ -618,7 +669,8 @@
     "ai_confidence": 91.3,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-33",
@@ -637,7 +689,8 @@
     "ai_confidence": 88.6,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-34",
@@ -656,7 +709,8 @@
     "ai_confidence": 95.1,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-35",
@@ -675,7 +729,8 @@
     "ai_confidence": 89.7,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-36",
@@ -694,7 +749,8 @@
     "ai_confidence": 93.5,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-37",
@@ -713,7 +769,8 @@
     "ai_confidence": 92.9,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-38",
@@ -732,7 +789,8 @@
     "ai_confidence": 92.9,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-39",
@@ -751,7 +809,8 @@
     "ai_confidence": 92.9,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-40",
@@ -770,7 +829,8 @@
     "ai_confidence": 88.9,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-41",
@@ -789,7 +849,8 @@
     "ai_confidence": 95.3,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-42",
@@ -808,7 +869,8 @@
     "ai_confidence": 89.1,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-43",
@@ -827,7 +889,8 @@
     "ai_confidence": 92.2,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-44",
@@ -846,7 +909,8 @@
     "ai_confidence": 89.9,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-45",
@@ -865,7 +929,8 @@
     "ai_confidence": 89.8,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-46",
@@ -884,7 +949,8 @@
     "ai_confidence": 94.3,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-47",
@@ -903,7 +969,8 @@
     "ai_confidence": 95.6,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-48",
@@ -922,7 +989,8 @@
     "ai_confidence": 92.6,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-49",
@@ -941,7 +1009,8 @@
     "ai_confidence": 89.4,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_id": "PROJ-MANUAL-50",
@@ -960,7 +1029,8 @@
     "ai_confidence": 89.2,
     "research_gap": "Standard implementation lacking robust real-time optimization.",
     "scalability_factor": "Medium to High",
-    "future_scope": "Expansion with advanced ML models."
+    "future_scope": "Expansion with advanced ML models.",
+    "status": "approved"
   },
   {
     "project_title": "Smart Healthcare AI",
@@ -976,7 +1046,7 @@
     ],
     "year": 2025,
     "owner": "student_20260222230959@example.com",
-    "status": "pending",
+    "status": "approved",
     "innovation_score": 92,
     "research_gap": "Lack of high-performance Transformer-XL implementation in traditional AI workflows.",
     "ai_suggestions": {

@@ -4,16 +4,26 @@ const Project = require('../models/Project');
 const auth = require('../middleware/authMiddleware');
 const { analyzeAndGenerate } = require('../utils/aiEngine');
 
-// Public: Get all projects
+// Public: Get all approved projects
 router.get('/', async (req, res) => {
     try {
         const { search, domain, year } = req.query;
-        const query = {};
+        const query = { status: 'approved' }; // Only show approved or default projects
         if (domain && domain !== 'all') query.domain = domain;
         if (year && year !== 'all') query.year = year;
         if (search) query.search = search;
 
         const projects = await Project.find(query).sort({ createdAt: -1 });
+        res.json(projects);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+// Protected: Get all pending projects (Teacher/Admin)
+router.get('/pending', auth(['teacher', 'admin']), async (req, res) => {
+    try {
+        const projects = await Project.find({ status: 'pending' }).sort({ createdAt: -1 });
         res.json(projects);
     } catch (err) {
         res.status(500).json({ message: err.message });

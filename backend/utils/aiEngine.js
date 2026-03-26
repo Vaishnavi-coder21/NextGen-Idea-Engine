@@ -1,74 +1,70 @@
-const natural = require('natural');
-const TfIdf = natural.TfIdf;
-const tokenizer = new natural.WordTokenizer();
+const OpenAI = require('openai');
+const axios = require('axios');
 
-const DOMAIN_UPGRADES = {
-    "AI": {
-        algos: ["Transformer-XL", "Reasoning Models (o1-like)", "Multi-modal LLMs", "Diff-Flow"],
-        tech: ["PyTorch Lightning", "Hugging Face Diffusers", "NVIDIA CUDA 12", "Vector Databases (Pinecone)"]
-    },
-    "Blockchain": {
-        algos: ["Zk-SNARKs", "Proof of Useful Work", "Sharding 2.0", "Consensus with VRF"],
-        tech: ["Solidity 0.8.20", "Rust", "Hyperledger Fabric", "Polkadot SDK"]
-    },
-    "IoT": {
-        algos: ["Edge Federated Learning", "TinyML Optimization", "MQTT with Quantum Cryptography"],
-        tech: ["ESP32-S3", "LoRaWAN v1.1", "Azure IoT Edge", "FreeRTOS"]
-    },
-    "Healthcare": {
-        algos: ["Diffusion for Medical Imaging", "Privacy-Preserving GNNs", "Federated Differential Privacy"],
-        tech: ["FHIR API", "DICOM Standard", "TensorFlow Health", "AWS HealthLake"]
-    },
-    "Cybersecurity": {
-        algos: ["Behavioral Adversarial Learning", "Zero-Trust Mesh Networking", "Quantum-Resistant Encryption"],
-        tech: ["CrowdStrike APIs", "EBPF Monitoring", "Wazuh", "Snort 3"]
-    }
-};
+// Initialize OpenAI client if key is provided
+const openai = process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY !== 'your_openai_api_key_here' 
+    ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY }) 
+    : null;
 
 const analyzeAndGenerate = async (title, problem, existingProjects) => {
-    const tfidf = new TfIdf();
+    const provider = process.env.AI_PROVIDER || 'openai';
+    const prompt = `
+        As an expert AI research assistant, analyze the following student project proposal:
+        Title: ${title}
+        Problem Statement: ${problem}
 
-    // Add existing projects to TF-IDF
-    existingProjects.forEach(p => {
-        tfidf.addDocument(p.project_title + " " + p.problem_statement);
-    });
+        Provide a JSON response with the following fields:
+        - enhanced_title: A more professional, research-oriented title.
+        - improved_problem_statement: A refined, more technical problem statement.
+        - suggested_algorithms: List of 2-3 modern, advanced algorithms suitable for this project.
+        - suggested_technologies: List of 3-4 modern technologies/frameworks to use.
+        - research_gap: A brief explanation of the research gap this project addresses.
+        - innovation_score: An integer from 0-100 representing how innovative this is.
+        - ai_confidence: A float representing your confidence in this analysis.
+        - future_scope: Potential future directions for this research.
+        - scalability_suggestion: How to make this project scalable.
+    `;
 
-    // Calculate Uniqueness Score based on TF-IDF
-    // If few matches, uniqueness is high.
-    let matches = 0;
-    tfidf.tfidfs(title + " " + problem, (i, measure) => {
-        if (measure > 0.5) matches++;
-    });
-
-    const uniqueness = Math.max(0, 100 - (matches * 10));
-    const algoUpgradeScore = 85; // Simulated for now
-    const limitationCoverage = 90; // Simulated for now
-
-    const innovationScore = Math.round((uniqueness + algoUpgradeScore + limitationCoverage) / 3);
-
-    // Mocking "AI" generation based on domain detection
-    const tokens = tokenizer.tokenize((title + " " + problem).toLowerCase());
-    let detectedDomain = "AI";
-    for (const domain in DOMAIN_UPGRADES) {
-        if (tokens.includes(domain.toLowerCase())) {
-            detectedDomain = domain;
-            break;
+    try {
+        let result;
+        if (provider === 'openai' && openai) {
+            const completion = await openai.chat.completions.create({
+                model: "gpt-3.5-turbo",
+                messages: [{ role: "user", content: prompt }],
+                response_format: { type: "json_object" }
+            });
+            result = JSON.parse(completion.choices[0].message.content);
+        } else if (provider === 'huggingface' && process.env.HUGGINGFACE_API_KEY) {
+            const response = await axios.post(
+                "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2",
+                { inputs: prompt },
+                { headers: { Authorization: `Bearer ${process.env.HUGGINGFACE_API_KEY}` } }
+            );
+            // Simplistic extraction for HF as it usually returns text
+            const text = response.data[0].generated_text;
+            const jsonStart = text.indexOf('{');
+            const jsonEnd = text.lastIndexOf('}') + 1;
+            result = JSON.parse(text.substring(jsonStart, jsonEnd));
+        } else {
+            // Fallback to mock if no API keys are set
+            console.warn('AI API not configured, using mock analysis');
+            return {
+                enhanced_title: `NextGen: ${title}`,
+                improved_problem_statement: problem,
+                suggested_algorithms: ["Inference Engines", "Neural Networks"],
+                suggested_technologies: ["React", "Node.js", "Python"],
+                research_gap: "Needs further API configuration to analyze deep research gaps.",
+                innovation_score: 75,
+                ai_confidence: 80,
+                future_scope: "Integration with cloud services.",
+                scalability_suggestion: "Containerization with Docker."
+            };
         }
+        return result;
+    } catch (error) {
+        console.error('AI Analysis Error:', error.message);
+        throw error;
     }
-
-    const upgrade = DOMAIN_UPGRADES[detectedDomain];
-
-    return {
-        enhanced_title: `NextGen: ${title} with ${upgrade.algos[0]}`,
-        improved_problem_statement: `While current solutions for ${title} struggle with scalability, this approach leverages ${upgrade.algos[0]} to bridge the performance gap identified in existing research.`,
-        suggested_algorithms: [upgrade.algos[0], upgrade.algos[1]],
-        suggested_technologies: ["Next.js 14", ...upgrade.tech.slice(0, 2)],
-        research_gap: `Lack of high-performance ${upgrade.algos[0]} implementation in traditional ${detectedDomain} workflows.`,
-        innovation_score: innovationScore,
-        ai_confidence: 94.2,
-        future_scope: "Integration with real-time streaming data and autonomous agentic workflows.",
-        scalability_suggestion: "Microservices architecture with Kubernetes for dynamic scaling."
-    };
 };
 
 module.exports = { analyzeAndGenerate };

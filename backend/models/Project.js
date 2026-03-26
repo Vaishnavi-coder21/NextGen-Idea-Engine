@@ -3,134 +3,127 @@ const path = require('path');
 
 const DATA_PATH = path.join(__dirname, '../../data/projects.json');
 
-// Essential Fallback Dataset
 const BACKUP_PROJECTS = [
     {
-        "project_id": "PROJ-MANUAL-01",
-        "project_title": "Sign Language Recognizer",
+        "project_id": "PROJ-DUMMY-01",
+        "project_title": "AI Sign Language Recognizer",
         "domain": "AI",
-        "problem_statement": "Convert sign language to text using computer vision",
+        "problem_statement": "Bridging communication gaps for the hearing impaired using real-time computer vision.",
         "algorithms_used": ["CNN", "MediaPipe"],
-        "technologies_used": ["Python", "TensorFlow"],
+        "technologies_used": ["Python", "TensorFlow", "OpenCV"],
         "year": 2024,
-        "innovation_score": 85,
-        "embedding": [0.12, 0.45, -0.67] // Simplified mock embeddings
-    },
-    {
-        "project_id": "PROJ-MANUAL-02",
-        "project_title": "Disease Prediction using ML",
-        "domain": "Healthcare",
-        "problem_statement": "Early detection of chronic diseases via patient vitals",
-        "algorithms_used": ["Random Forest", "XGBoost"],
-        "technologies_used": ["Python", "Sklearn"],
-        "year": 2025,
-        "innovation_score": 92,
-        "embedding": [0.33, -0.11, 0.88]
+        "innovation_score": 88,
+        "status": "approved"
     }
 ];
 
 const readData = () => {
     try {
-        if (fs.existsSync(DATA_PATH)) {
-            const raw = fs.readFileSync(DATA_PATH, 'utf8');
-            const parsed = JSON.parse(raw);
-            return parsed.length > 0 ? parsed : BACKUP_PROJECTS;
+        if (!fs.existsSync(DATA_PATH)) {
+            const dir = path.dirname(DATA_PATH);
+            if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+            fs.writeFileSync(DATA_PATH, JSON.stringify(BACKUP_PROJECTS, null, 2));
+            return BACKUP_PROJECTS;
         }
+        const raw = fs.readFileSync(DATA_PATH, 'utf8');
+        const parsed = JSON.parse(raw);
+        if (!Array.isArray(parsed)) throw new Error('data/projects.json is not an array');
+        return parsed;
     } catch (err) {
-        console.error('Project Data Load Error:', err.message);
+        console.error('Data Persistence Error:', err.message);
+        return BACKUP_PROJECTS;
     }
-    return BACKUP_PROJECTS;
-};
-
-// Simple Cosine Similarity
-const cosineSimilarity = (vecA, vecB) => {
-    if (!vecA || !vecB) return 0;
-    const dotProduct = vecA.reduce((sum, val, i) => sum + val * (vecB[i] || 0), 0);
-    const magA = Math.sqrt(vecA.reduce((sum, val) => sum + val * val, 0));
-    const magB = Math.sqrt(vecB.reduce((sum, val) => sum + val * val, 0));
-    if (magA === 0 || magB === 0) return 0;
-    return dotProduct / (magA * magB);
 };
 
 const Project = {
     find: (query = {}) => {
         const data = readData();
-        let filtered = data.filter(p => {
-            let match = true;
-            if (query.domain && p.domain !== query.domain) match = false;
-            if (query.year && p.year != query.year) match = false;
+        const filtered = data.filter(p => {
+            if (query.domain && query.domain !== 'all' && p.domain !== query.domain) return false;
+            if (query.year && query.year !== 'all' && p.year != query.year) return false;
+            if (query.status && p.status !== query.status) return false;
+            
             if (query.search) {
-                const s = query.search.toLowerCase();
-                const titleMatch = p.project_title && p.project_title.toLowerCase().includes(s);
-                const probMatch = p.problem_statement && p.problem_statement.toLowerCase().includes(s);
-                const algoMatch = p.algorithms_used && Array.isArray(p.algorithms_used) && p.algorithms_used.some(a => a.toLowerCase().includes(s));
-                const techMatch = p.technologies_used && Array.isArray(p.technologies_used) && p.technologies_used.some(t => t.toLowerCase().includes(s));
-                if (!titleMatch && !probMatch && !algoMatch && !techMatch) match = false;
+                const search = query.search.toLowerCase();
+                const title = (p.project_title || '').toLowerCase();
+                const problem = (p.problem_statement || '').toLowerCase();
+                const algos = (p.algorithms_used || []).map(a => String(a).toLowerCase());
+                
+                return title.includes(search) || problem.includes(search) || algos.some(a => a.includes(search));
             }
-            return match;
+            return true;
         });
 
-        const queryObj = {
-            _data: filtered,
-            sort(sortObj) {
-                const field = Object.keys(sortObj)[0];
-                const order = sortObj[field];
-                this._data.sort((a, b) => {
-                    const valA = a[field] || 0;
-                    const valB = b[field] || 0;
-                    if (valA < valB) return order === 1 ? -1 : 1;
-                    if (valA > valB) return order === 1 ? 1 : -1;
-                    return 0;
-                });
-                return this;
-            },
-            limit(num) {
-                this._data = this._data.slice(0, num);
-                return this;
-            },
-            then(resolve) { resolve(this._data); }
+        return {
+            sort: function() { return this; },
+            limit: function() { return this; },
+            then: function(cb) { cb(filtered); return this; },
+            _data: filtered
         };
-        return queryObj;
     },
 
-    semanticSearch: async (queryText) => {
+    countDocuments: () => {
+        return readData().length;
+    },
+
+    aggregate: (pipeline) => {
         const data = readData();
-        // Since initializing a real transformer model takes time and memory,
-        // we use a keyword-overlap-based similarity for the fast prototype,
-        // which simulates semantic understanding.
-        const queryTerms = queryText.toLowerCase().split(' ');
-
-        const results = data.map(p => {
-            let score = 0;
-            const content = `${p.project_title} ${p.problem_statement} ${p.domain} ${p.algorithms_used?.join(' ')}`.toLowerCase();
-            queryTerms.forEach(term => {
-                if (content.includes(term)) score += 1;
-            });
-            return { ...p, semanticScore: score };
-        });
-
-        return results
-            .filter(r => r.semanticScore > 0)
-            .sort((a, b) => b.semanticScore - a.semanticScore || b.innovation_score - a.innovation_score)
-            .slice(0, 5);
+        if (pipeline.some(p => p.$group?._id === "$domain")) {
+            const counts = {};
+            data.forEach(p => counts[p.domain] = (counts[p.domain] || 0) + 1);
+            return Object.entries(counts).map(([_id, count]) => ({ _id, count }));
+        }
+        return [];
     },
 
-    save: async (projectData) => {
-        try {
-            const data = readData();
+    save: (projectData) => {
+        const data = readData();
+        const existingIndex = data.findIndex(p => p._id === projectData._id || p.project_id === projectData.project_id);
+        
+        if (existingIndex !== -1) {
+            data[existingIndex] = { ...data[existingIndex], ...projectData, updatedAt: new Date() };
+        } else {
             const newProject = {
                 ...projectData,
                 _id: Date.now().toString(),
                 createdAt: new Date(),
-                embedding: [Math.random(), Math.random(), Math.random()] // Simulated embedding
+                status: projectData.status || 'pending'
             };
             data.push(newProject);
-            fs.writeFileSync(DATA_PATH, JSON.stringify(data, null, 2));
-            return newProject;
-        } catch (err) {
-            console.warn('Persistence Error:', err.message);
-            return { ...projectData, _id: Date.now().toString(), createdAt: new Date() };
+            projectData = newProject;
         }
+        
+        fs.writeFileSync(DATA_PATH, JSON.stringify(data, null, 2));
+        return projectData;
+    },
+
+    semanticSearch: (queryText) => {
+        const data = readData().filter(p => p.status === 'approved');
+        const search = queryText.toLowerCase().split(' ').filter(word => word.length > 2);
+        
+        return data
+            .map(p => {
+                let score = 0;
+                const title = (p.project_title || '').toLowerCase();
+                const problem = (p.problem_statement || '').toLowerCase();
+                const tech = (p.technologies_used || []).join(' ').toLowerCase();
+                const algos = (p.algorithms_used || []).join(' ').toLowerCase();
+
+                search.forEach(word => {
+                    if (title.includes(word)) score += 10;
+                    if (problem.includes(word)) score += 5;
+                    if (tech.includes(word)) score += 3;
+                    if (algos.includes(word)) score += 3;
+                });
+
+                // Innovation bonus
+                score += (p.innovation_score || 0) / 20;
+
+                return { ...p, score };
+            })
+            .filter(p => p.score > 0)
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 5);
     }
 };
 
