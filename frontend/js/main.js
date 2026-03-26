@@ -581,7 +581,17 @@ async function generateInnovation() {
     document.getElementById('loader').classList.remove('hidden');
     document.getElementById('output-section').classList.add('hidden');
 
-    setTimeout(() => {
+    try {
+        const res = await fetch(`${API_BASE}/projects/generate-idea`, {
+            method: 'POST',
+            headers: getAuthHeader(),
+            body: JSON.stringify({ input })
+        });
+        
+        const data = await res.json();
+        
+        if (!res.ok) throw new Error(data.message || 'Generation failed');
+
         document.getElementById('loader').classList.add('hidden');
         const output = document.getElementById('output-section');
         output.classList.remove('hidden');
@@ -589,24 +599,42 @@ async function generateInnovation() {
         output.innerHTML = `
             <div class="innovation-result glass mt-40">
                 <div class="result-header">
-                    <h3 class="gradient-text">Next-Gen AI Blueprint</h3>
-                    <div class="score-pill">94% Innovation</div>
+                    <h3 class="gradient-text">${data.title}</h3>
+                    <div class="score-pill">${data.innovation_score}% Innovation</div>
                 </div>
+                
                 <div class="result-item">
-                    <h4><i class="fas fa-microchip"></i> Suggested Algorithm</h4>
-                    <p>Enhanced Transformer with Real-time Attention Mechanism</p>
+                    <h4><i class="fas fa-exclamation-triangle"></i> Defined Problem</h4>
+                    <p>${data.problem}</p>
                 </div>
+
                 <div class="result-item">
-                    <h4><i class="fas fa-code"></i> Technology Stack</h4>
-                    <p>PyTorch, FastAPI, React, NVIDIA CUDA</p>
+                    <h4><i class="fas fa-lightbulb"></i> Innovative Solution</h4>
+                    <p>${data.solution}</p>
                 </div>
-                <div class="result-item">
-                    <h4><i class="fas fa-bullseye"></i> Research Gap Addressed</h4>
-                    <p>Current solutions lack latency optimization for live sign-language translations. This blueprint handles sub-10ms processing.</p>
+
+                <div class="analysis-grid glass-inner mb-20 style="margin-top: 15px;">
+                    <div class="analysis-item">
+                        <h4><i class="fas fa-microchip"></i> Suggested Algorithms</h4>
+                        <ul>${(data.algorithms || []).map(a => `<li style="margin-left:20px;list-style-type:disc;">${a}</li>`).join('')}</ul>
+                    </div>
+                    <div class="analysis-item">
+                        <h4><i class="fas fa-code"></i> Tech Stack</h4>
+                        <div class="tech-stack" style="margin-top: 5px;">${(data.tech_stack || []).map(t => `<span>${t}</span>`).join('')}</div>
+                    </div>
+                    <div class="analysis-item full">
+                        <h4><i class="fas fa-book-open"></i> Work Already Done (Repository Match)</h4>
+                        <p>${data.work_already_done}</p>
+                    </div>
+                    <div class="analysis-item full">
+                        <h4><i class="fas fa-bullseye"></i> Research Gap & Limitations</h4>
+                        <p>${data.limitations}</p>
+                    </div>
                 </div>
+
                 <div class="confidence-bar">
                     <span>AI Confidence</span>
-                    <div class="bar-fill" style="width: 94%"></div>
+                    <div class="bar-fill" style="width: ${data.innovation_score}%"></div>
                 </div>
                 <div style="margin-top: 20px;">
                     <button class="btn btn-primary" onclick="alert('Saving to your dashboard...')">Save Blueprint</button>
@@ -615,7 +643,11 @@ async function generateInnovation() {
             </div>
         `;
         output.scrollIntoView({ behavior: 'smooth' });
-    }, 2000);
+    } catch (err) {
+        console.error('Generation Error:', err);
+        alert('Failed to generate idea. Please ensure you are logged in (Student/Teacher/Admin) and try again.');
+        document.getElementById('loader').classList.add('hidden');
+    }
 }
 
 async function fetchAnalytics() {
